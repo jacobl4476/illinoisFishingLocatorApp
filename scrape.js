@@ -6,7 +6,7 @@ const NodeGeocoder = require('node-geocoder');
 const options = {
     provider: 'google',
     httpAdapter: 'https', // Default
-    apiKey: 'AIzaSyCrDgPIR7e9iNrk8_WAxV2HVQ8_FPw4Ezg', // Leave empty for Nominatim
+    apiKey: '', // Leave empty for Nominatim
     formatter: null         // 'gpx', 'string', ...
 };
 
