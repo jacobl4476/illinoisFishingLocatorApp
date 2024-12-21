@@ -98,9 +98,7 @@ function App() {
                 </div>
             </div>
             <div className="main">
-                <div className="table">
-                    <TableT/>
-                </div>
+                <TableT/>
             <Map setBodyOfWater={setBodyOfWater}/>
             </div>
         </>
