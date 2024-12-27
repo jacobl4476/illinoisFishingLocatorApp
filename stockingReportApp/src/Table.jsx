@@ -7,5 +7,5 @@ import { getTheme } from '@table-library/react-table-library/baseline';
 export function TableT({data, columns}) {
     const theme = useTheme(getTheme());
 
-    return <CompactTable columns={columns} data={data} theme={theme} />;
+    return <CompactTable columns={columns} data={{nodes:data}} theme={theme} />;
 };

@@ -3,6 +3,7 @@ import './App.css'
 import stockingReport from "../stockingReport.json";
 import {MapContainer, Marker, Popup, TileLayer, useMap} from "react-leaflet";
 import { TableT } from './Table.jsx'
+import initSqlJs from "sql.js"
 
 const INITIAL_CENTER = [
     39.9, -89.1
@@ -70,35 +71,45 @@ function Table(bodyOfWater){
 }
 
 function App() {
-    const [inputValue, setInputValue] = useState('');
     const [bodyOfWater, setBodyOfWater] = useState("BARREN CREEK");
+    const [db, setDb] = useState(null);
+     const [error, setError] = useState(null);
+    useEffect(() => { 
+        async function doThis() {
+        // sql.js needs to fetch its wasm file, so we cannot immediately instantiate the database
+        // without any configuration, initSqlJs will fetch the wasm files directly from the same path as the js
+        // see ../craco.config.js
+        try {
+          const SQL = await initSqlJs({ locateFile: () => './stocking.db'});
+          console.log(SQL)
+          setDb(new SQL.Database());
+        } catch (err) {
+          setError(err);
+        }
+      }
+      doThis()
+    }, []);
 
-    const handleInputChange = (event) => {
-        setInputValue(event.target.value);
-    };
+    const COLUMNS = [
+        { label: 'Body Of Water', renderCell: (item) => item.name },
+      ];
 
     const handleKeyPress = (event) => {
         if (event.key === 'Enter') {
             setBodyOfWater(inputValue)
         }
     };
-
+    if (error) return <pre>{error.toString()}</pre>;
+    else if (!db) return <pre>Loading...</pre>;
     return (
         <>
             <div style={{height:'20%'}}>
                 <div>
                     Stocking Report App
                 </div>
-                <div className="card">
-                    <input name="myInput"
-                           value={inputValue}
-                           onChange={handleInputChange}
-                           onKeyPress={handleKeyPress}
-                    />
-                </div>
             </div>
             <div className="main">
-                <TableT/>
+                <TableT data={ {} } columns={ COLUMNS }/>
             <Map setBodyOfWater={setBodyOfWater}/>
             </div>
         </>
