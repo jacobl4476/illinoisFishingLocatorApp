@@ -1,0 +1,11 @@
+services:
+  server:
+    build:
+      context: ./api
+    ports:
+      - 3000:3000
+  app:
+    build:
+      context: ./stockingReportApp
+    ports:
+      - 80:80

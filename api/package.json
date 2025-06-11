@@ -1,0 +1,41 @@
+{
+  "name": "scrape",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "api": "nodemon server",
+    "getStockingReport": "node scrape.js",
+    "toDB": "node toDB.js",
+    "start": "vite"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "-": "^0.0.1",
+    "@fastify/cors": "^10.0.1",
+    "@fastify/middie": "^9.0.2",
+    "@google/maps": "^1.1.3",
+    "@types/leaflet": "^1.9.14",
+    "axios": "^1.7.7",
+    "cheerio": "^1.0.0",
+    "fastify": "^5.2.0",
+    "fs": "^0.0.1-security",
+    "google": "^2.1.0",
+    "leaflet": "^1.9.4",
+    "middie": "^7.1.0",
+    "node-geocoder": "^4.4.1",
+    "node-open-geocoder": "^4.0.1",
+    "nodemon": "^3.1.7",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-leaflet": "^4.2.1",
+    "save": "^2.9.0",
+    "sql.js": "^1.12.0",
+    "sqlite": "^5.1.1",
+    "sqlite3": "^5.1.7",
+    "vite": "^5.4.11"
+  }
+}
